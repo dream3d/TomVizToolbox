@@ -13,6 +13,8 @@
 
 #include "client/jsonrpcclient.h"
 
+#include <QEventLoop>
+
 // Include the MOC generated file for this class
 #include "moc_TvLoadFileFilter.cpp"
 
@@ -105,12 +107,22 @@ void TvLoadFileFilter::execute()
     return;
   }
   
-  std::shared_ptr<MoleQueue::JsonRpcClient> client = std::shared_ptr<MoleQueue::JsonRpcClient>(new MoleQueue::JsonRpcClient(this));
+  std::shared_ptr<MoleQueue::JsonRpcClient> client = std::shared_ptr<MoleQueue::JsonRpcClient>(new MoleQueue::JsonRpcClient(nullptr));
   //  MoleQueue::JsonRpcClient* client = ;
-  client->connectToServer(getSocketFile());
+
+  QEventLoop waitLoop;
+  client->connectToServer("tomviz");
   QJsonObject request(client->emptyRequest());
-  request["method"] = QLatin1String("listQueues");
+  request["method"] = QLatin1String("openFile");
+  QJsonObject params;
+  params["fileName"] = getSocketFile();
+  request["params"] = params;
   client->sendRequest(request);
+
+  QObject::connect(client.get(), SIGNAL(resultReceived(QJsonObject)), &waitLoop, SLOT(quit()));
+  QObject::connect(client.get(), SIGNAL(errorReceived(QJsonObject)), &waitLoop, SLOT(quit()));
+
+  waitLoop.exec();
   
   notifyStatusMessage(getHumanLabel(), "Complete");
 }
