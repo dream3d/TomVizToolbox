@@ -52,6 +52,12 @@ foreach(f ${_PrivateFilters} )
 endforeach()
 
 
+ADD_SIMPL_SUPPORT_MOC_HEADER(${${PLUGIN_NAME}_SOURCE_DIR} ${_filterGroupName} client/client.h)
+ADD_SIMPL_SUPPORT_SOURCE(${${PLUGIN_NAME}_SOURCE_DIR} ${_filterGroupName} client/client.cpp)
+ADD_SIMPL_SUPPORT_HEADER(${${PLUGIN_NAME}_SOURCE_DIR} ${_filterGroupName} client/jobobject.h)
+ADD_SIMPL_SUPPORT_SOURCE(${${PLUGIN_NAME}_SOURCE_DIR} ${_filterGroupName} client/jobobject.cpp)
+ADD_SIMPL_SUPPORT_MOC_HEADER(${${PLUGIN_NAME}_SOURCE_DIR} ${_filterGroupName} client/jsonrpcclient.h)
+ADD_SIMPL_SUPPORT_SOURCE(${${PLUGIN_NAME}_SOURCE_DIR} ${_filterGroupName} client/jsonrpcclient.cpp)
 
 #---------------------
 # This macro must come last after we are done adding all the filters and support files.
