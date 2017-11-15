@@ -18,8 +18,6 @@
 
 #include <QtCore/QJsonArray>
 
-#include "moc_jobobject.cpp"
-
 namespace MoleQueue
 {
 
