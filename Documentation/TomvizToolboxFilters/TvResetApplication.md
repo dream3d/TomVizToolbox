@@ -1,16 +1,14 @@
-TvLoadFileFilter {#tvloadfilefilter}
+TvResetApplication {#tvresetapplication}
 =============
 
 ## Group (Subgroup) ##
 TomvizToolbox (TomvizToolbox)
 
 ## Description ##
-This **Filter** loads a file into a Tomviz server instance using the JSON-RPC 2.0 protocol.
+This **Filter** resets a Tomviz server instance using the JSON-RPC 2.0 protocol.
 
 ## Parameters ##
-| Name | Type | Description |
-|------|------|------|
-| Socket File | String | The path to the file that will be loaded into Tomviz |
+None
 
 ## Required Geometry ##
 N/A

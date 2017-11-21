@@ -46,12 +46,12 @@
 
 #include "TomvizToolboxTestFileLocations.h"
 
-class TvLoadFileFilterTest
+class TvResetApplicationTest
 {
 
   public:
-    TvLoadFileFilterTest() {}
-    virtual ~TvLoadFileFilterTest() {}
+    TvResetApplicationTest() {}
+    virtual ~TvResetApplicationTest() {}
 
 
   // -----------------------------------------------------------------------------
@@ -60,8 +60,8 @@ class TvLoadFileFilterTest
   void RemoveTestFiles()
   {
   #if REMOVE_TEST_FILES
-    QFile::remove(UnitTest::TvLoadFileFilterTest::TestFile1);
-    QFile::remove(UnitTest::TvLoadFileFilterTest::TestFile2);
+    QFile::remove(UnitTest::TvResetApplicationTest::TestFile1);
+    QFile::remove(UnitTest::TvResetApplicationTest::TestFile2);
   #endif
   }
 
@@ -70,8 +70,8 @@ class TvLoadFileFilterTest
   // -----------------------------------------------------------------------------
   int TestFilterAvailability()
   {
-    // Now instantiate the TvLoadFileFilterTest Filter from the FilterManager
-    QString filtName = "TvLoadFileFilter";
+    // Now instantiate the TvResetApplicationTest Filter from the FilterManager
+    QString filtName = "TvResetApplication";
     FilterManager* fm = FilterManager::Instance();
     IFilterFactory::Pointer filterFactory = fm->getFactoryForFilter(filtName);
     if (nullptr == filterFactory.get())
@@ -86,14 +86,14 @@ class TvLoadFileFilterTest
   // -----------------------------------------------------------------------------
   //
   // -----------------------------------------------------------------------------
-  int TestTvLoadFileFilterTest()
+  int TestTvResetApplicationTest()
   {
     //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   /* Please write TvLoadFileFilterTest test code here.
+   /* Please write TvResetApplicationTest test code here.
     *
     * Your IO test files are:
-    * UnitTest::TvLoadFileFilterTest::TestFile1
-    * UnitTest::TvLoadFileFilterTest::TestFile2
+    * UnitTest::TvResetApplicationTest::TestFile1
+    * UnitTest::TvResetApplicationTest::TestFile2
     *
     * SIMPLib provides some macros that will throw exceptions when a test fails
     * and thus report that during testing. These macros are located in the
@@ -122,14 +122,14 @@ class TvLoadFileFilterTest
 
     DREAM3D_REGISTER_TEST( TestFilterAvailability() );
 
-    DREAM3D_REGISTER_TEST( TestTvLoadFileFilterTest() )
+    DREAM3D_REGISTER_TEST( TestTvResetApplicationTest() )
 
     DREAM3D_REGISTER_TEST( RemoveTestFiles() )
   }
 
   private:
-    TvLoadFileFilterTest(const TvLoadFileFilterTest&); // Copy Constructor Not Implemented
-    void operator=(const TvLoadFileFilterTest&); // Operator '=' Not Implemented
+    TvResetApplicationTest(const TvResetApplicationTest&); // Copy Constructor Not Implemented
+    void operator=(const TvResetApplicationTest&); // Operator '=' Not Implemented
 
 
 };

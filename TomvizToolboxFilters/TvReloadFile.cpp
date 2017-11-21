@@ -30,7 +30,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#include "TvLoadFileFilter.h"
+#include "TvReloadFile.h"
 
 #include <QtCore/QEventLoop>
 #include <QtCore/QFileInfo>
@@ -45,13 +45,13 @@
 #include "client/jsonrpcclient.h"
 
 // Include the MOC generated file for this class
-#include "moc_TvLoadFileFilter.cpp"
+#include "moc_TvReloadFile.cpp"
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvLoadFileFilter::TvLoadFileFilter()
-: AbstractFilter()
+TvReloadFile::TvReloadFile() :
+  AbstractFilter()
 {
   initialize();
   setupFilterParameters();
@@ -60,14 +60,14 @@ TvLoadFileFilter::TvLoadFileFilter()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvLoadFileFilter::~TvLoadFileFilter()
+TvReloadFile::~TvReloadFile()
 {
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::initialize()
+void TvReloadFile::initialize()
 {
   setErrorCondition(0);
   setWarningCondition(0);
@@ -77,11 +77,11 @@ void TvLoadFileFilter::initialize()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::setupFilterParameters()
+void TvReloadFile::setupFilterParameters()
 {
   FilterParameterVector parameters;
 
-  parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Socket File", SocketFile, FilterParameter::Parameter, TvLoadFileFilter));
+  parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Socket File", SocketFile, FilterParameter::Parameter, TvReloadFile));
 
   setFilterParameters(parameters);
 }
@@ -89,14 +89,14 @@ void TvLoadFileFilter::setupFilterParameters()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::dataCheck()
+void TvReloadFile::dataCheck()
 {
   setErrorCondition(0);
   setWarningCondition(0);
 
   QString socketFilePath = getSocketFile();
   QFileInfo fi(socketFilePath);
-
+  
   if(socketFilePath.isEmpty())
   {
     QString ss = QObject::tr("The socket file can not be empty.");
@@ -116,24 +116,21 @@ void TvLoadFileFilter::dataCheck()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::preflight()
+void TvReloadFile::preflight()
 {
-  // These are the REQUIRED lines of CODE to make sure the filter behaves
-  // correctly
-  setInPreflight(true);              // Set the fact that we are preflighting.
-  emit preflightAboutToExecute();    // Emit this signal so that other widgets can
-                                     // do one file update
-  emit updateFilterParameters(this); // Emit this signal to have the widgets
-                                     // push their values down to the filter
-  dataCheck();                       // Run our DataCheck to make sure everthing is setup correctly
-  emit preflightExecuted();          // We are done preflighting this filter
-  setInPreflight(false);             // Inform the system this filter is NOT in preflight mode anymore.
+  // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
+  setInPreflight(true); // Set the fact that we are preflighting.
+  emit preflightAboutToExecute(); // Emit this signal so that other widgets can do one file update
+  emit updateFilterParameters(this); // Emit this signal to have the widgets push their values down to the filter
+  dataCheck(); // Run our DataCheck to make sure everthing is setup correctly
+  emit preflightExecuted(); // We are done preflighting this filter
+  setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::execute()
+void TvReloadFile::execute()
 {
   initialize();
   dataCheck();
@@ -146,14 +143,14 @@ void TvLoadFileFilter::execute()
   {
     return;
   }
-  
+
   std::shared_ptr<MoleQueue::JsonRpcClient> client = std::shared_ptr<MoleQueue::JsonRpcClient>(new MoleQueue::JsonRpcClient(nullptr));
   //  MoleQueue::JsonRpcClient* client = ;
 
   QEventLoop waitLoop;
   client->connectToServer("tomviz");
   QJsonObject request(client->emptyRequest());
-  request["method"] = QLatin1String("openFile");
+  request["method"] = QLatin1String("reloadFile");
   QJsonObject params;
   params["fileName"] = getSocketFile();
   request["params"] = params;
@@ -187,16 +184,14 @@ void TvLoadFileFilter::execute()
   });
 
   waitLoop.exec();
-  
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer TvReloadFile::newFilterInstance(bool copyFilterParameters)
 {
-  TvLoadFileFilter::Pointer filter = TvLoadFileFilter::New();
+  TvReloadFile::Pointer filter = TvReloadFile::New();
   if(true == copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
@@ -207,15 +202,13 @@ AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParam
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getCompiledLibraryName()
-{
-  return TomvizToolboxConstants::TomvizToolboxBaseName;
-}
+const QString TvReloadFile::getCompiledLibraryName()
+{ return TomvizToolboxConstants::TomvizToolboxBaseName; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getBrandingString()
+const QString TvReloadFile::getBrandingString()
 {
   return "TomvizToolbox";
 }
@@ -223,34 +216,29 @@ const QString TvLoadFileFilter::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getFilterVersion()
+const QString TvReloadFile::getFilterVersion()
 {
   QString version;
   QTextStream vStream(&version);
-  vStream << TomvizToolbox::Version::Major() << "." << TomvizToolbox::Version::Minor() << "." << TomvizToolbox::Version::Patch();
+  vStream <<  TomvizToolbox::Version::Major() << "." << TomvizToolbox::Version::Minor() << "." << TomvizToolbox::Version::Patch();
   return version;
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getGroupName()
-{
-  return SIMPL::FilterGroups::Unsupported;
-}
+const QString TvReloadFile::getGroupName()
+{ return SIMPL::FilterGroups::Unsupported; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getSubGroupName()
-{
-  return "TomvizToolbox";
-}
+const QString TvReloadFile::getSubGroupName()
+{ return "TomvizToolbox"; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getHumanLabel()
-{
-  return "Load File in Tomviz";
-}
+const QString TvReloadFile::getHumanLabel()
+{ return "Reload File in Tomviz"; }
+

@@ -30,14 +30,11 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#include "TvLoadFileFilter.h"
+#include "TvResetApplication.h"
 
 #include <QtCore/QEventLoop>
-#include <QtCore/QFileInfo>
 
 #include "SIMPLib/Common/Constants.h"
-
-#include "SIMPLib/FilterParameters/InputFileFilterParameter.h"
 
 #include "TomvizToolbox/TomvizToolboxConstants.h"
 #include "TomvizToolbox/TomvizToolboxVersion.h"
@@ -45,13 +42,13 @@
 #include "client/jsonrpcclient.h"
 
 // Include the MOC generated file for this class
-#include "moc_TvLoadFileFilter.cpp"
+#include "moc_TvResetApplication.cpp"
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvLoadFileFilter::TvLoadFileFilter()
-: AbstractFilter()
+TvResetApplication::TvResetApplication() :
+  AbstractFilter()
 {
   initialize();
   setupFilterParameters();
@@ -60,14 +57,14 @@ TvLoadFileFilter::TvLoadFileFilter()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvLoadFileFilter::~TvLoadFileFilter()
+TvResetApplication::~TvResetApplication()
 {
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::initialize()
+void TvResetApplication::initialize()
 {
   setErrorCondition(0);
   setWarningCondition(0);
@@ -77,11 +74,9 @@ void TvLoadFileFilter::initialize()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::setupFilterParameters()
+void TvResetApplication::setupFilterParameters()
 {
   FilterParameterVector parameters;
-
-  parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Socket File", SocketFile, FilterParameter::Parameter, TvLoadFileFilter));
 
   setFilterParameters(parameters);
 }
@@ -89,51 +84,31 @@ void TvLoadFileFilter::setupFilterParameters()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::dataCheck()
+void TvResetApplication::dataCheck()
 {
   setErrorCondition(0);
   setWarningCondition(0);
-
-  QString socketFilePath = getSocketFile();
-  QFileInfo fi(socketFilePath);
-
-  if(socketFilePath.isEmpty())
-  {
-    QString ss = QObject::tr("The socket file can not be empty.");
-    setErrorCondition(-67000);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
-  else if (fi.exists() == false)
-  {
-    QString ss = QObject::tr("The specified socket file does not exist.");
-    setErrorCondition(-67001);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
-    return;
-  }
+  
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::preflight()
+void TvResetApplication::preflight()
 {
-  // These are the REQUIRED lines of CODE to make sure the filter behaves
-  // correctly
-  setInPreflight(true);              // Set the fact that we are preflighting.
-  emit preflightAboutToExecute();    // Emit this signal so that other widgets can
-                                     // do one file update
-  emit updateFilterParameters(this); // Emit this signal to have the widgets
-                                     // push their values down to the filter
-  dataCheck();                       // Run our DataCheck to make sure everthing is setup correctly
-  emit preflightExecuted();          // We are done preflighting this filter
-  setInPreflight(false);             // Inform the system this filter is NOT in preflight mode anymore.
+  // These are the REQUIRED lines of CODE to make sure the filter behaves correctly
+  setInPreflight(true); // Set the fact that we are preflighting.
+  emit preflightAboutToExecute(); // Emit this signal so that other widgets can do one file update
+  emit updateFilterParameters(this); // Emit this signal to have the widgets push their values down to the filter
+  dataCheck(); // Run our DataCheck to make sure everthing is setup correctly
+  emit preflightExecuted(); // We are done preflighting this filter
+  setInPreflight(false); // Inform the system this filter is NOT in preflight mode anymore.
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-void TvLoadFileFilter::execute()
+void TvResetApplication::execute()
 {
   initialize();
   dataCheck();
@@ -146,17 +121,17 @@ void TvLoadFileFilter::execute()
   {
     return;
   }
-  
+
   std::shared_ptr<MoleQueue::JsonRpcClient> client = std::shared_ptr<MoleQueue::JsonRpcClient>(new MoleQueue::JsonRpcClient(nullptr));
   //  MoleQueue::JsonRpcClient* client = ;
 
   QEventLoop waitLoop;
   client->connectToServer("tomviz");
   QJsonObject request(client->emptyRequest());
-  request["method"] = QLatin1String("openFile");
-  QJsonObject params;
-  params["fileName"] = getSocketFile();
-  request["params"] = params;
+  request["method"] = QLatin1String("reset");
+//  QJsonObject params;
+//  params["fileName"] = getSocketFile();
+//  request["params"] = params;
   client->sendRequest(request);
 
   QObject::connect(client.get(), SIGNAL(resultReceived(QJsonObject)), &waitLoop, SLOT(quit()));
@@ -187,16 +162,16 @@ void TvLoadFileFilter::execute()
   });
 
   waitLoop.exec();
-  
+
   notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer TvResetApplication::newFilterInstance(bool copyFilterParameters)
 {
-  TvLoadFileFilter::Pointer filter = TvLoadFileFilter::New();
+  TvResetApplication::Pointer filter = TvResetApplication::New();
   if(true == copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
@@ -207,15 +182,13 @@ AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParam
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getCompiledLibraryName()
-{
-  return TomvizToolboxConstants::TomvizToolboxBaseName;
-}
+const QString TvResetApplication::getCompiledLibraryName()
+{ return TomvizToolboxConstants::TomvizToolboxBaseName; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getBrandingString()
+const QString TvResetApplication::getBrandingString()
 {
   return "TomvizToolbox";
 }
@@ -223,34 +196,29 @@ const QString TvLoadFileFilter::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getFilterVersion()
+const QString TvResetApplication::getFilterVersion()
 {
   QString version;
   QTextStream vStream(&version);
-  vStream << TomvizToolbox::Version::Major() << "." << TomvizToolbox::Version::Minor() << "." << TomvizToolbox::Version::Patch();
+  vStream <<  TomvizToolbox::Version::Major() << "." << TomvizToolbox::Version::Minor() << "." << TomvizToolbox::Version::Patch();
   return version;
 }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getGroupName()
-{
-  return SIMPL::FilterGroups::Unsupported;
-}
+const QString TvResetApplication::getGroupName()
+{ return SIMPL::FilterGroups::Unsupported; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getSubGroupName()
-{
-  return "TomvizToolbox";
-}
+const QString TvResetApplication::getSubGroupName()
+{ return "TomvizToolbox"; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getHumanLabel()
-{
-  return "Load File in Tomviz";
-}
+const QString TvResetApplication::getHumanLabel()
+{ return "Reset Tomviz Application"; }
+
