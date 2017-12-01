@@ -13,9 +13,6 @@
 
 #include "TomvizToolbox/TomvizToolboxConstants.h"
 
-// Include the MOC generated file for this class
-#include "moc_TomvizToolboxPlugin.cpp"
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -36,9 +33,7 @@ m_DidLoad(false)
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TomvizToolboxPlugin::~TomvizToolboxPlugin()
-{
-}
+TomvizToolboxPlugin::~TomvizToolboxPlugin() = default;
 
 // -----------------------------------------------------------------------------
 //

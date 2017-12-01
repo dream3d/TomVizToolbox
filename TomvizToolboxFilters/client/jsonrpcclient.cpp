@@ -21,8 +21,6 @@
 #include <QtCore/QTimer>
 #include <QtNetwork/QLocalSocket>
 
-#include "moc_jsonrpcclient.cpp"
-
 namespace MoleQueue
 {
 

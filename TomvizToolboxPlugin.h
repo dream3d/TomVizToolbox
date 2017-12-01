@@ -138,8 +138,8 @@ class TomvizToolboxPlugin : public QObject, public ISIMPLibPlugin
     QList<QString>      m_Filters;
     bool                m_DidLoad;
 
-    TomvizToolboxPlugin(const TomvizToolboxPlugin&); // Copy Constructor Not Implemented
-    void operator=(const TomvizToolboxPlugin&); // Operator '=' Not Implemented
+    TomvizToolboxPlugin(const TomvizToolboxPlugin&) = delete; // Copy Constructor Not Implemented
+    void operator=(const TomvizToolboxPlugin&) = delete;      // Operator '=' Not Implemented
 };
 
 #endif /* _TomvizToolbox_H_ */

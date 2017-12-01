@@ -142,8 +142,8 @@ class TvResetApplication : public AbstractFilter
     void initialize();
 
   private:
-    TvResetApplication(const TvResetApplication&); // Copy Constructor Not Implemented
-    void operator=(const TvResetApplication&); // Operator '=' Not Implemented
+    TvResetApplication(const TvResetApplication&) = delete; // Copy Constructor Not Implemented
+    void operator=(const TvResetApplication&) = delete;     // Operator '=' Not Implemented
 };
 
 #endif /* _TvResetApplication_H_ */

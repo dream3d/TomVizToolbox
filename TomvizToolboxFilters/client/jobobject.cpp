@@ -25,9 +25,7 @@ JobObject::JobObject()
 {
 }
 
-JobObject::~JobObject()
-{
-}
+JobObject::~JobObject() = default;
 
 void JobObject::setValue(const QString &key, const QVariant &value_)
 {

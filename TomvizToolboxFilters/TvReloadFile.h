@@ -145,8 +145,8 @@ class TvReloadFile : public AbstractFilter
     void initialize();
 
   private:
-    TvReloadFile(const TvReloadFile&); // Copy Constructor Not Implemented
-    void operator=(const TvReloadFile&); // Operator '=' Not Implemented
+    TvReloadFile(const TvReloadFile&) = delete;   // Copy Constructor Not Implemented
+    void operator=(const TvReloadFile&) = delete; // Operator '=' Not Implemented
 };
 
 #endif /* _TvReloadFile_H_ */

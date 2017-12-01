@@ -150,7 +150,7 @@ protected:
   void initialize();
 
 private:
-  TvLoadFileFilter(const TvLoadFileFilter&); // Copy Constructor Not Implemented
+  TvLoadFileFilter(const TvLoadFileFilter&) = delete; // Copy Constructor Not Implemented
   void operator=(const TvLoadFileFilter&);   // Operator '=' Not Implemented
 };
 

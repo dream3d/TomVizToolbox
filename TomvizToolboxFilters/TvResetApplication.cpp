@@ -41,9 +41,6 @@
 
 #include "client/jsonrpcclient.h"
 
-// Include the MOC generated file for this class
-#include "moc_TvResetApplication.cpp"
-
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
@@ -57,9 +54,7 @@ TvResetApplication::TvResetApplication() :
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvResetApplication::~TvResetApplication()
-{
-}
+TvResetApplication::~TvResetApplication() = default;
 
 // -----------------------------------------------------------------------------
 //
