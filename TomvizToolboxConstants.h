@@ -12,8 +12,8 @@
 namespace TomvizToolboxConstants
 {
   const QString TomvizToolboxPluginFile("TomvizToolboxPlugin");
-  const QString TomvizToolboxPluginDisplayName("TomvizToolboxPlugin");
-  const QString TomvizToolboxBaseName("TomvizToolboxPlugin");
+  const QString TomvizToolboxPluginDisplayName("Tomviz Toolbox");
+  const QString TomvizToolboxBaseName("TomvizToolbox");
 
   namespace FilterGroups
   {
