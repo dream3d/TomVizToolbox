@@ -2,23 +2,29 @@ TvReloadFile {#tvreloadfile}
 =============
 
 ## Group (Subgroup) ##
+
 TomvizToolbox (TomvizToolbox)
 
 ## Description ##
+
 This **Filter** reloads a file into a Tomviz server instance using the JSON-RPC 2.0 protocol.
 
 ## Parameters ##
+
 | Name | Type | Description |
 |------|------|------|
 | Socket File | String | The path to the file that will be reloaded into Tomviz |
 
 ## Required Geometry ##
+
 N/A
 
 ## Required Objects ##
+
 None
 
 ## Created Objects ##
+
 None
 
 ## License & Copyright ##

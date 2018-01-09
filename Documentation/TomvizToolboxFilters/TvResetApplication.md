@@ -2,21 +2,27 @@ TvResetApplication {#tvresetapplication}
 =============
 
 ## Group (Subgroup) ##
+
 TomvizToolbox (TomvizToolbox)
 
 ## Description ##
+
 This **Filter** resets a Tomviz server instance using the JSON-RPC 2.0 protocol.
 
 ## Parameters ##
+
 None
 
 ## Required Geometry ##
+
 N/A
 
 ## Required Objects ##
+
 None
 
 ## Created Objects ##
+
 None
 
 ## License & Copyright ##
