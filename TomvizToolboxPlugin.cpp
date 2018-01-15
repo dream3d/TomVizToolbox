@@ -38,10 +38,27 @@ TomvizToolboxPlugin::~TomvizToolboxPlugin() = default;
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-QString TomvizToolboxPlugin::getPluginName()
+QString TomvizToolboxPlugin::getPluginFileName()
 {
-  return (TomvizToolboxConstants::TomvizToolboxPluginDisplayName);
+  return TomvizToolboxConstants::TomvizToolboxPluginFile;
 }
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+QString TomvizToolboxPlugin::getPluginDisplayName()
+{
+  return TomvizToolboxConstants::TomvizToolboxPluginDisplayName;
+}
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+QString TomvizToolboxPlugin::getPluginBaseName()
+{
+  return TomvizToolboxConstants::TomvizToolboxBaseName;
+}
+
 
 // -----------------------------------------------------------------------------
 //
