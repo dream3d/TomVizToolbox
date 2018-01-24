@@ -184,7 +184,7 @@ void TvReloadFile::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer TvReloadFile::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer TvReloadFile::newFilterInstance(bool copyFilterParameters) const
 {
   TvReloadFile::Pointer filter = TvReloadFile::New();
   if(true == copyFilterParameters)
@@ -197,13 +197,13 @@ AbstractFilter::Pointer TvReloadFile::newFilterInstance(bool copyFilterParameter
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvReloadFile::getCompiledLibraryName()
+const QString TvReloadFile::getCompiledLibraryName() const
 { return TomvizToolboxConstants::TomvizToolboxBaseName; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvReloadFile::getBrandingString()
+const QString TvReloadFile::getBrandingString() const
 {
   return "TomvizToolbox";
 }
@@ -211,7 +211,7 @@ const QString TvReloadFile::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvReloadFile::getFilterVersion()
+const QString TvReloadFile::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -222,7 +222,7 @@ const QString TvReloadFile::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvReloadFile::getGroupName()
+const QString TvReloadFile::getGroupName() const
 { return SIMPL::FilterGroups::Unsupported; }
 
 // -----------------------------------------------------------------------------
@@ -236,12 +236,12 @@ const QUuid TvReloadFile::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvReloadFile::getSubGroupName()
+const QString TvReloadFile::getSubGroupName() const
 { return "TomvizToolbox"; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvReloadFile::getHumanLabel()
+const QString TvReloadFile::getHumanLabel() const
 { return "Reload File in Tomviz"; }
 

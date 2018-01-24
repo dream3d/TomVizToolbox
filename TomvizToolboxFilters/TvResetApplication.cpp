@@ -164,7 +164,7 @@ void TvResetApplication::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer TvResetApplication::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer TvResetApplication::newFilterInstance(bool copyFilterParameters) const
 {
   TvResetApplication::Pointer filter = TvResetApplication::New();
   if(true == copyFilterParameters)
@@ -177,13 +177,13 @@ AbstractFilter::Pointer TvResetApplication::newFilterInstance(bool copyFilterPar
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvResetApplication::getCompiledLibraryName()
+const QString TvResetApplication::getCompiledLibraryName() const
 { return TomvizToolboxConstants::TomvizToolboxBaseName; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvResetApplication::getBrandingString()
+const QString TvResetApplication::getBrandingString() const
 {
   return "TomvizToolbox";
 }
@@ -191,7 +191,7 @@ const QString TvResetApplication::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvResetApplication::getFilterVersion()
+const QString TvResetApplication::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -202,7 +202,7 @@ const QString TvResetApplication::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvResetApplication::getGroupName()
+const QString TvResetApplication::getGroupName() const
 { return SIMPL::FilterGroups::Unsupported; }
 
 // -----------------------------------------------------------------------------
@@ -216,12 +216,12 @@ const QUuid TvResetApplication::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvResetApplication::getSubGroupName()
+const QString TvResetApplication::getSubGroupName() const
 { return "TomvizToolbox"; }
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvResetApplication::getHumanLabel()
+const QString TvResetApplication::getHumanLabel() const
 { return "Reset Tomviz Application"; }
 

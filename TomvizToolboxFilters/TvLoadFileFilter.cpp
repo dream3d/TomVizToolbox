@@ -189,7 +189,7 @@ void TvLoadFileFilter::execute()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParameters)
+AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParameters) const
 {
   TvLoadFileFilter::Pointer filter = TvLoadFileFilter::New();
   if(true == copyFilterParameters)
@@ -202,7 +202,7 @@ AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParam
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getCompiledLibraryName()
+const QString TvLoadFileFilter::getCompiledLibraryName() const
 {
   return TomvizToolboxConstants::TomvizToolboxBaseName;
 }
@@ -210,7 +210,7 @@ const QString TvLoadFileFilter::getCompiledLibraryName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getBrandingString()
+const QString TvLoadFileFilter::getBrandingString() const
 {
   return "TomvizToolbox";
 }
@@ -218,7 +218,7 @@ const QString TvLoadFileFilter::getBrandingString()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getFilterVersion()
+const QString TvLoadFileFilter::getFilterVersion() const
 {
   QString version;
   QTextStream vStream(&version);
@@ -229,7 +229,7 @@ const QString TvLoadFileFilter::getFilterVersion()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getGroupName()
+const QString TvLoadFileFilter::getGroupName() const
 {
   return SIMPL::FilterGroups::Unsupported;
 }
@@ -245,7 +245,7 @@ const QUuid TvLoadFileFilter::getUuid()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getSubGroupName()
+const QString TvLoadFileFilter::getSubGroupName() const
 {
   return "TomvizToolbox";
 }
@@ -253,7 +253,7 @@ const QString TvLoadFileFilter::getSubGroupName()
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-const QString TvLoadFileFilter::getHumanLabel()
+const QString TvLoadFileFilter::getHumanLabel() const
 {
   return "Load File in Tomviz";
 }
