@@ -1,4 +1,4 @@
-TvReloadFile {#tvreloadfile}
+TvReloadFile 
 =============
 
 ## Group (Subgroup) ##

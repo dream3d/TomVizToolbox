@@ -1,4 +1,4 @@
-TvLoadFileFilter {#tvloadfilefilter}
+TvLoadFileFilter 
 =============
 
 ## Group (Subgroup) ##

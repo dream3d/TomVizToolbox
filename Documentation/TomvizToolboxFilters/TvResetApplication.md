@@ -1,4 +1,4 @@
-TvResetApplication {#tvresetapplication}
+TvResetApplication 
 =============
 
 ## Group (Subgroup) ##
