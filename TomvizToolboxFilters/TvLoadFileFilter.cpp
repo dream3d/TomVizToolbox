@@ -48,7 +48,6 @@
 //
 // -----------------------------------------------------------------------------
 TvLoadFileFilter::TvLoadFileFilter()
-: AbstractFilter()
 {
   initialize();
   setupFilterParameters();
