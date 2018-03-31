@@ -46,10 +46,10 @@ class TvResetApplication : public AbstractFilter
 
   public:
     SIMPL_SHARED_POINTERS(TvResetApplication)
-    SIMPL_STATIC_NEW_MACRO(TvResetApplication)
-     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvResetApplication, AbstractFilter)
+    SIMPL_FILTER_NEW_MACRO(TvResetApplication)
+    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvResetApplication, AbstractFilter)
 
-    virtual ~TvResetApplication();
+    ~TvResetApplication() override;
 
     /**
      * @brief getCompiledLibraryName Reimplemented from @see AbstractFilter class
@@ -148,8 +148,11 @@ class TvResetApplication : public AbstractFilter
     void initialize();
 
   private:
+  public:
     TvResetApplication(const TvResetApplication&) = delete; // Copy Constructor Not Implemented
-    void operator=(const TvResetApplication&) = delete;     // Operator '=' Not Implemented
+    TvResetApplication(TvResetApplication&&) = delete;      // Move Constructor
+    TvResetApplication& operator=(const TvResetApplication&) = delete; // Copy Assignment
+    TvResetApplication& operator=(TvResetApplication&&) = delete;      // Move Assignment
 };
 
 #endif /* _TvResetApplication_H_ */

@@ -50,7 +50,6 @@
 TvLoadFileFilter::TvLoadFileFilter()
 {
   initialize();
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

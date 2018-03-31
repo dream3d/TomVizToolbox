@@ -46,10 +46,10 @@ class TvReloadFile : public AbstractFilter
 
   public:
     SIMPL_SHARED_POINTERS(TvReloadFile)
-    SIMPL_STATIC_NEW_MACRO(TvReloadFile)
-     SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvReloadFile, AbstractFilter)
+    SIMPL_FILTER_NEW_MACRO(TvReloadFile)
+    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvReloadFile, AbstractFilter)
 
-    virtual ~TvReloadFile();
+    ~TvReloadFile() override;
 
     SIMPL_FILTER_PARAMETER(QString, SocketFile)
     Q_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
@@ -151,8 +151,11 @@ class TvReloadFile : public AbstractFilter
     void initialize();
 
   private:
+  public:
     TvReloadFile(const TvReloadFile&) = delete;   // Copy Constructor Not Implemented
-    void operator=(const TvReloadFile&) = delete; // Operator '=' Not Implemented
+    TvReloadFile(TvReloadFile&&) = delete;        // Move Constructor
+    TvReloadFile& operator=(const TvReloadFile&) = delete; // Copy Assignment
+    TvReloadFile& operator=(TvReloadFile&&) = delete;      // Move Assignment
 };
 
 #endif /* _TvReloadFile_H_ */

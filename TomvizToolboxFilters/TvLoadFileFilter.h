@@ -47,10 +47,10 @@ class TvLoadFileFilter : public AbstractFilter
 
 public:
   SIMPL_SHARED_POINTERS(TvLoadFileFilter)
-  SIMPL_STATIC_NEW_MACRO(TvLoadFileFilter)
-   SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvLoadFileFilter, AbstractFilter)
+  SIMPL_FILTER_NEW_MACRO(TvLoadFileFilter)
+  SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvLoadFileFilter, AbstractFilter)
 
-  virtual ~TvLoadFileFilter();
+  ~TvLoadFileFilter() override;
 
   SIMPL_FILTER_PARAMETER(QString, SocketFile)
   Q_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
@@ -156,7 +156,9 @@ protected:
   void initialize();
 
 private:
+public:
   TvLoadFileFilter(const TvLoadFileFilter&) = delete; // Copy Constructor Not Implemented
+  TvLoadFileFilter(TvLoadFileFilter&&) = delete;      // Move Constructor
   void operator=(const TvLoadFileFilter&);   // Operator '=' Not Implemented
 };
 

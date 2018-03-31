@@ -48,7 +48,6 @@ TvResetApplication::TvResetApplication() :
   AbstractFilter()
 {
   initialize();
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------
