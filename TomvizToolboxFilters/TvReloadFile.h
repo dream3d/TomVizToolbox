@@ -150,7 +150,6 @@ class TvReloadFile : public AbstractFilter
     */
     void initialize();
 
-  private:
   public:
     TvReloadFile(const TvReloadFile&) = delete;   // Copy Constructor Not Implemented
     TvReloadFile(TvReloadFile&&) = delete;        // Move Constructor

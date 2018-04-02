@@ -147,7 +147,6 @@ class TvResetApplication : public AbstractFilter
     */
     void initialize();
 
-  private:
   public:
     TvResetApplication(const TvResetApplication&) = delete; // Copy Constructor Not Implemented
     TvResetApplication(TvResetApplication&&) = delete;      // Move Constructor

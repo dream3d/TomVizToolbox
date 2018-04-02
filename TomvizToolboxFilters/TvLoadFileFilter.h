@@ -159,7 +159,8 @@ private:
 public:
   TvLoadFileFilter(const TvLoadFileFilter&) = delete; // Copy Constructor Not Implemented
   TvLoadFileFilter(TvLoadFileFilter&&) = delete;      // Move Constructor
-  void operator=(const TvLoadFileFilter&);            // Move assignment Not Implemented
+  TvLoadFileFilter& operator=(const TvLoadFileFilter&) = delete; // Copy Assignment Not Implemented
+  TvLoadFileFilter& operator=(TvLoadFileFilter&&) = delete;      // Move Assignment Not Implemented
 };
 
 #endif /* _TvLoadFileFilter_H_ */
