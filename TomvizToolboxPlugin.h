@@ -157,7 +157,7 @@ class TomvizToolboxPlugin : public QObject, public ISIMPLibPlugin
     bool                m_DidLoad;
 
     TomvizToolboxPlugin(const TomvizToolboxPlugin&) = delete; // Copy Constructor Not Implemented
-    void operator=(const TomvizToolboxPlugin&) = delete;      // Operator '=' Not Implemented
+    void operator=(const TomvizToolboxPlugin&) = delete;      // Move assignment Not Implemented
 };
 
 #endif /* _TomvizToolbox_H_ */

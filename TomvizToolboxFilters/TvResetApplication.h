@@ -151,7 +151,7 @@ class TvResetApplication : public AbstractFilter
   public:
     TvResetApplication(const TvResetApplication&) = delete; // Copy Constructor Not Implemented
     TvResetApplication(TvResetApplication&&) = delete;      // Move Constructor
-    TvResetApplication& operator=(const TvResetApplication&) = delete; // Copy Assignment
+    TvResetApplication& operator=(const TvResetApplication&) = delete; // Copy Assignment Not Implemented
     TvResetApplication& operator=(TvResetApplication&&) = delete;      // Move Assignment
 };
 

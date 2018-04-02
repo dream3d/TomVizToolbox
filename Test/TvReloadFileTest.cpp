@@ -130,8 +130,6 @@ class TvReloadFileTest
 
   private:
     TvReloadFileTest(const TvReloadFileTest&); // Copy Constructor Not Implemented
-    void operator=(const TvReloadFileTest&); // Operator '=' Not Implemented
-
-
+    void operator=(const TvReloadFileTest&);   // Move assignment Not Implemented
 };
 
