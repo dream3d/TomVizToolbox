@@ -51,7 +51,6 @@ TvReloadFile::TvReloadFile() :
   AbstractFilter()
 {
   initialize();
-  setupFilterParameters();
 }
 
 // -----------------------------------------------------------------------------

@@ -130,8 +130,6 @@ class TvResetApplicationTest
 
   private:
     TvResetApplicationTest(const TvResetApplicationTest&); // Copy Constructor Not Implemented
-    void operator=(const TvResetApplicationTest&); // Operator '=' Not Implemented
-
-
+    void operator=(const TvResetApplicationTest&);         // Move assignment Not Implemented
 };
 

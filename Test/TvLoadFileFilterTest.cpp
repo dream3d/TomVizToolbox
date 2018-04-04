@@ -130,8 +130,6 @@ class TvLoadFileFilterTest
 
   private:
     TvLoadFileFilterTest(const TvLoadFileFilterTest&); // Copy Constructor Not Implemented
-    void operator=(const TvLoadFileFilterTest&); // Operator '=' Not Implemented
-
-
+    void operator=(const TvLoadFileFilterTest&);       // Move assignment Not Implemented
 };
 
