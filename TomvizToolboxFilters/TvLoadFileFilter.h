@@ -44,6 +44,8 @@
 class TvLoadFileFilter : public AbstractFilter
 {
   Q_OBJECT
+  PYB11_CREATE_BINDINGS(TvLoadFileFilter SUPERCLASS AbstractFilter)
+  PYB11_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
 
 public:
   SIMPL_SHARED_POINTERS(TvLoadFileFilter)
