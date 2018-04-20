@@ -222,7 +222,11 @@ void TomvizToolboxPlugin::readSettings(QSettings& prefs)
 {
 }
 
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+void TomvizToolboxPlugin::registerFilterWidgets(FilterWidgetManager* fwm)
+{
+}
+
 #include "TomvizToolboxFilters/RegisterKnownFilters.cpp"
-
-#include "FilterParameterWidgets/RegisterKnownFilterParameterWidgets.cpp"
-
