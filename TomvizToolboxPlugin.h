@@ -10,10 +10,13 @@
 
 #include "SIMPLib/Plugin/ISIMPLibPlugin.h"
 
+#include "TomvizToolbox/TomvizToolboxDLLExport.h"
+
 /**
  * @brief The TomvizToolboxPlugin class
  */
-class TomvizToolboxPlugin : public QObject, public ISIMPLibPlugin
+class TomvizToolbox_EXPORT TomvizToolboxPlugin : public QObject, public ISIMPLibPlugin
+
 {
     Q_OBJECT
     Q_INTERFACES(ISIMPLibPlugin)

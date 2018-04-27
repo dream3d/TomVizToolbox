@@ -10,7 +10,13 @@ class TomvizToolboxGuiPlugin : public TomvizToolboxPlugin
 
 public:
   TomvizToolboxGuiPlugin();
-  ~TomvizToolboxGuiPlugin() override;
+   ~TomvizToolboxGuiPlugin() override;
+  
+  /**
+   * @brief Register all the filters with the FilterWidgetFactory
+   */
+  void registerFilterWidgets(FilterWidgetManager* fwm) override;
+  
 
 public:
   TomvizToolboxGuiPlugin(const TomvizToolboxGuiPlugin&) = delete;            // Copy Constructor Not Implemented
