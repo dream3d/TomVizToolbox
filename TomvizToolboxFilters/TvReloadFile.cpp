@@ -133,7 +133,7 @@ void TvReloadFile::execute()
     return;
   }
 
-  if(getCancel() == true)
+  if(getCancel())
   {
     return;
   }

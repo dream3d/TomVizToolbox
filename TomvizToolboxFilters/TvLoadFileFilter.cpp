@@ -135,7 +135,7 @@ void TvLoadFileFilter::execute()
     return;
   }
 
-  if(getCancel() == true)
+  if(getCancel())
   {
     return;
   }
