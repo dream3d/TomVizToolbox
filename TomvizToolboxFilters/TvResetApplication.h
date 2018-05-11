@@ -37,10 +37,12 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 
+#include "TomvizToolbox/TomvizToolboxDLLExport.h"
+
 /**
  * @brief The TvResetApplication class. See [Filter documentation](@ref tvresetapplication) for details.
  */
-class TvResetApplication : public AbstractFilter
+class TomvizToolbox_EXPORT TvResetApplication : public AbstractFilter
 {
   Q_OBJECT
 

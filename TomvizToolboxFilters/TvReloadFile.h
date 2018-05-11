@@ -37,10 +37,12 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 
+#include "TomvizToolbox/TomvizToolboxDLLExport.h"
+
 /**
  * @brief The TvReloadFile class. See [Filter documentation](@ref tvreloadfile) for details.
  */
-class TvReloadFile : public AbstractFilter
+class TomvizToolbox_EXPORT TvReloadFile : public AbstractFilter
 {
   Q_OBJECT
   PYB11_CREATE_BINDINGS(TvReloadFile SUPERCLASS AbstractFilter)

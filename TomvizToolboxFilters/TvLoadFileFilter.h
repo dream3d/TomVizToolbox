@@ -37,11 +37,13 @@
 #include "SIMPLib/Filtering/AbstractFilter.h"
 #include "SIMPLib/SIMPLib.h"
 
+#include "TomvizToolbox/TomvizToolboxDLLExport.h"
+
 /**
  * @brief The TvLoadFileFilter class. See [Filter documentation](@ref
  * tvloadfilefilter) for details.
  */
-class TvLoadFileFilter : public AbstractFilter
+class TomvizToolbox_EXPORT TvLoadFileFilter : public AbstractFilter
 {
   Q_OBJECT
   PYB11_CREATE_BINDINGS(TvLoadFileFilter SUPERCLASS AbstractFilter)
