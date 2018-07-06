@@ -30,8 +30,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _tvreloadfile_h_
-#define _tvreloadfile_h_
+#pragma once
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -161,4 +160,3 @@ public:
   TvReloadFile& operator=(TvReloadFile&&) = delete;      // Move Assignment
 };
 
-#endif /* _TvReloadFile_H_ */

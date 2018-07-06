@@ -30,8 +30,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _tvloadfilefilter_h_
-#define _tvloadfilefilter_h_
+#pragma once
 
 #include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -167,4 +166,3 @@ public:
   TvLoadFileFilter& operator=(TvLoadFileFilter&&) = delete;      // Move Assignment Not Implemented
 };
 
-#endif /* _TvLoadFileFilter_H_ */

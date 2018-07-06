@@ -2,8 +2,7 @@
  * Your License or Copyright can go here
  */
 
-#ifndef _tomviztoolboxplugin_h_
-#define _tomviztoolboxplugin_h_
+#pragma once
 
 #include <QtCore/QObject>
 #include <QtCore/QSettings>
@@ -163,4 +162,3 @@ class TomvizToolbox_EXPORT TomvizToolboxPlugin : public QObject, public ISIMPLib
     void operator=(const TomvizToolboxPlugin&) = delete;      // Move assignment Not Implemented
 };
 
-#endif /* _TomvizToolbox_H_ */

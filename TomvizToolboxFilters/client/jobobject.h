@@ -14,8 +14,7 @@
 
 ******************************************************************************/
 
-#ifndef MOLEQUEUE_JOBOBJECT_H
-#define MOLEQUEUE_JOBOBJECT_H
+#pragma once
 
 #include "molequeueclientexport.h"
 
@@ -171,4 +170,3 @@ protected:
 
 } // End namespace MoleQueue
 
-#endif // MOLEQUEUE_JOBOBJECT_H

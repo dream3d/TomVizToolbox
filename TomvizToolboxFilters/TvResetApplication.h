@@ -30,8 +30,7 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-#ifndef _tvresetapplication_h_
-#define _tvresetapplication_h_
+#pragma once
 
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
@@ -156,4 +155,3 @@ class TomvizToolbox_EXPORT TvResetApplication : public AbstractFilter
     TvResetApplication& operator=(TvResetApplication&&) = delete;      // Move Assignment
 };
 
-#endif /* _TvResetApplication_H_ */

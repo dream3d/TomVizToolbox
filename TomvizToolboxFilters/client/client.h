@@ -14,8 +14,7 @@
 
 ******************************************************************************/
 
-#ifndef MOLEQUEUE_CLIENT_H
-#define MOLEQUEUE_CLIENT_H
+#pragma once
 
 #include "molequeueclientexport.h"
 
@@ -257,4 +256,3 @@ private:
 
 } // End namespace MoleQueue
 
-#endif // MOLEQUEUE_CLIENT_H

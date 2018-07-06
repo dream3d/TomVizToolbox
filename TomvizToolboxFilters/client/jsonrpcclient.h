@@ -14,8 +14,7 @@
 
 ******************************************************************************/
 
-#ifndef MOLEQUEUE_JSONRPCCLIENT_H
-#define MOLEQUEUE_JSONRPCCLIENT_H
+#pragma once
 
 #include "molequeueclientexport.h"
 
@@ -150,4 +149,3 @@ protected:
 
 } // End namespace MoleQueue
 
-#endif // MOLEQUEUE_JSONRPCCLIENT_H
