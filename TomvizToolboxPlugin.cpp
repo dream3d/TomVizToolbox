@@ -12,6 +12,8 @@
 #include "SIMPLib/Filtering/IFilterFactory.hpp"
 
 #include "TomvizToolbox/TomvizToolboxConstants.h"
+#include "TomvizToolbox/TomvizToolboxVersion.h"
+
 
 // -----------------------------------------------------------------------------
 //
