@@ -7,27 +7,32 @@
 #include <QtCore/QFile>
 #include <QtCore/QFileInfo>
 
+#include "SIMPLib/Filtering/FilterFactory.hpp"
 #include "SIMPLib/Filtering/FilterManager.h"
 #include "SIMPLib/Filtering/IFilterFactory.hpp"
-#include "SIMPLib/Filtering/FilterFactory.hpp"
 
 #include "TomvizToolbox/TomvizToolboxConstants.h"
 
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TomvizToolboxPlugin::TomvizToolboxPlugin() :
-m_Version("0.1.0"),                            // Initialize TomvizToolbox's Version Number Here
-m_CompatibilityVersion("0.1.0"), // Initialize TomvizToolbox's Compatibility Version Number Here
-m_Vendor("Vendor Name"),                                // Initialize TomvizToolbox's Vendor Name Here
-m_URL("URL"),                                           // Initialize Company URL Here
-m_Location("Location"),                                 // Initialize TomvizToolbox library Location Here
-m_Description("Description"),                           // Initialize TomvizToolbox's Description Here
-m_Copyright("Copyright"),                               // Initialize TomvizToolbox's Copyright Here
-m_Filters(QList<QString>()),                        // Initialize TomvizToolbox's List of Dependencies Here
-m_DidLoad(false)
+TomvizToolboxPlugin::TomvizToolboxPlugin()
+: m_Version(TomvizToolbox::Version::Package())
+, m_CompatibilityVersion(TomvizToolbox::Version::Package())
+, m_Vendor("Open-Source")
+, // Initialize TomvizToolbox's Vendor Name Here
+    m_URL("http://www.github.com/dream3d/TomvizToolbox")
+, // Initialize Company URL Here
+    m_Location("")
+, // Initialize TomvizToolbox library Location Here
+    m_Description("")
+, // Initialize TomvizToolbox's Description Here
+    m_Copyright("")
+, // Initialize TomvizToolbox's Copyright Here
+    m_Filters(QList<QString>())
+, // Initialize TomvizToolbox's List of Dependencies Here
+    m_DidLoad(false)
 {
-
 }
 
 // -----------------------------------------------------------------------------
@@ -58,7 +63,6 @@ QString TomvizToolboxPlugin::getPluginBaseName()
 {
   return TomvizToolboxConstants::TomvizToolboxBaseName;
 }
-
 
 // -----------------------------------------------------------------------------
 //
@@ -112,9 +116,9 @@ QString TomvizToolboxPlugin::getDescription()
   QFileInfo licenseFileInfo(licenseFile);
   QString text = "<<--Description was not read-->>";
 
-  if ( licenseFileInfo.exists() )
+  if(licenseFileInfo.exists())
   {
-    if ( licenseFile.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if(licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
       QTextStream in(&licenseFile);
       text = in.readAll();
@@ -143,9 +147,9 @@ QString TomvizToolboxPlugin::getLicense()
   QFileInfo licenseFileInfo(licenseFile);
   QString text = "<<--License was not read-->>";
 
-  if ( licenseFileInfo.exists() )
+  if(licenseFileInfo.exists())
   {
-    if ( licenseFile.open(QIODevice::ReadOnly | QIODevice::Text) )
+    if(licenseFile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
       QTextStream in(&licenseFile);
       text = in.readAll();
@@ -162,18 +166,18 @@ QMap<QString, QString> TomvizToolboxPlugin::getThirdPartyLicenses()
   QMap<QString, QString> licenseMap;
   QList<QString> fileStrList;
   fileStrList.push_back(":/ThirdParty/HDF5.txt");
-  
+
   fileStrList.push_back(":/ThirdParty/Qt.txt");
   fileStrList.push_back(":/ThirdParty/Qwt.txt");
 
-  for (QList<QString>::iterator iter = fileStrList.begin(); iter != fileStrList.end(); iter++)
+  for(QList<QString>::iterator iter = fileStrList.begin(); iter != fileStrList.end(); iter++)
   {
     QFile file(*iter);
     QFileInfo licenseFileInfo(file);
 
-    if ( licenseFileInfo.exists() )
+    if(licenseFileInfo.exists())
     {
-      if ( file.open(QIODevice::ReadOnly | QIODevice::Text) )
+      if(file.open(QIODevice::ReadOnly | QIODevice::Text))
       {
         QTextStream in(&file);
         licenseMap.insert(licenseFileInfo.baseName(), in.readAll());
