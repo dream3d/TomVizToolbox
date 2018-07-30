@@ -20,7 +20,7 @@ public:
 
 public:
   TomvizToolboxGuiPlugin(const TomvizToolboxGuiPlugin&) = delete;            // Copy Constructor Not Implemented
-  TomvizToolboxGuiPlugin(TomvizToolboxGuiPlugin&&) = delete;                 // Move Constructor
+  TomvizToolboxGuiPlugin(TomvizToolboxGuiPlugin&&) = delete;                 // Move Constructor Not Implemented
   TomvizToolboxGuiPlugin& operator=(const TomvizToolboxGuiPlugin&) = delete; // Copy Assignment Not Implemented
   TomvizToolboxGuiPlugin& operator=(TomvizToolboxGuiPlugin&&) = delete;      // Move Assignment Not Implemented
 };

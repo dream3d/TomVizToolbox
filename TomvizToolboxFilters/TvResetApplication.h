@@ -150,7 +150,7 @@ class TomvizToolbox_EXPORT TvResetApplication : public AbstractFilter
 
   public:
     TvResetApplication(const TvResetApplication&) = delete; // Copy Constructor Not Implemented
-    TvResetApplication(TvResetApplication&&) = delete;      // Move Constructor
+    TvResetApplication(TvResetApplication&&) = delete;      // Move Constructor Not Implemented
     TvResetApplication& operator=(const TvResetApplication&) = delete; // Copy Assignment Not Implemented
     TvResetApplication& operator=(TvResetApplication&&) = delete;      // Move Assignment
 };
