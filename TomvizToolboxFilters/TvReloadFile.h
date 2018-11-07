@@ -157,6 +157,6 @@ public:
   TvReloadFile(const TvReloadFile&) = delete;            // Copy Constructor Not Implemented
   TvReloadFile(TvReloadFile&&) = delete;                 // Move Constructor Not Implemented
   TvReloadFile& operator=(const TvReloadFile&) = delete; // Copy Assignment Not Implemented
-  TvReloadFile& operator=(TvReloadFile&&) = delete;      // Move Assignment
+  TvReloadFile& operator=(TvReloadFile&&) = delete;      // Move Assignment Not Implemented
 };
 
