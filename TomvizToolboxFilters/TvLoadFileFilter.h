@@ -158,7 +158,6 @@ protected:
   */
   void initialize();
 
-private:
 public:
   TvLoadFileFilter(const TvLoadFileFilter&) = delete; // Copy Constructor Not Implemented
   TvLoadFileFilter(TvLoadFileFilter&&) = delete;      // Move Constructor Not Implemented
