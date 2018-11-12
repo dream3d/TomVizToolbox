@@ -97,7 +97,7 @@ void TvLoadFileFilter::dataCheck()
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
-  else if (fi.exists() == false)
+  if(!fi.exists())
   {
     QString ss = QObject::tr("The specified socket file does not exist.");
     setErrorCondition(-67001);
@@ -190,7 +190,7 @@ void TvLoadFileFilter::execute()
 AbstractFilter::Pointer TvLoadFileFilter::newFilterInstance(bool copyFilterParameters) const
 {
   TvLoadFileFilter::Pointer filter = TvLoadFileFilter::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

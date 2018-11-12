@@ -40,23 +40,26 @@ JsonRpcClient::~JsonRpcClient()
 
 bool JsonRpcClient::isConnected() const
 {
-  if (!m_socket)
+  if(m_socket == nullptr)
+  {
     return false;
-  else
+  }
+  {
     return m_socket->isOpen();
+  }
 }
 
 bool JsonRpcClient::connectToServer(const QString &serverName_)
 {
-  if (m_socket && m_socket->isOpen()) {
+  if((m_socket != nullptr) && m_socket->isOpen())
+  {
     if (m_socket->serverName() == serverName_) {
       return false;
     }
-    else {
+
       m_socket->close();
       delete m_socket;
       m_socket = NULL;
-    }
   }
 
   // New connection.
@@ -68,24 +71,28 @@ bool JsonRpcClient::connectToServer(const QString &serverName_)
   if (serverName_.isEmpty()) {
     return false;
   }
-  else {
+
     m_socket->connectToServer(serverName_);
     return isConnected();
-  }
 }
 
 QString JsonRpcClient::serverName() const
 {
-  if (m_socket)
+  if(m_socket != nullptr)
+  {
     return m_socket->serverName();
-  else
+  }
+  {
     return QString();
+  }
 }
 
 void JsonRpcClient::flush()
 {
-  if (m_socket)
+  if(m_socket != nullptr)
+  {
     m_socket->flush();
+  }
 }
 
 QJsonObject JsonRpcClient::emptyRequest()
@@ -98,8 +105,10 @@ QJsonObject JsonRpcClient::emptyRequest()
 
 bool JsonRpcClient::sendRequest(const QJsonObject &request)
 {
-  if (!m_socket)
+  if(m_socket == nullptr)
+  {
     return false;
+  }
 
   QJsonDocument document(request);
   QDataStream stream(m_socket);
@@ -119,18 +128,23 @@ void JsonRpcClient::readPacket(const QByteArray message)
                            + error.errorString() + "\nContent: " + message);
     return;
   }
-  else if (!reader.isObject()) {
+  if(!reader.isObject())
+  {
     // We need a valid object, something bad happened.
     emit badPacketReceived("Packet did not contain a valid JSON object.");
     return;
   }
-  else {
+
     QJsonObject root = reader.object();
     if (root["method"] != QJsonValue::Null) {
-      if (root["id"] != QJsonValue::Null)
+      if(root["id"] != QJsonValue::Null)
+      {
         emit badPacketReceived("Received a request packet for the client.");
+      }
       else
+      {
         emit notificationReceived(root);
+      }
     }
     if (root["result"] != QJsonValue::Null) {
       // This is a result packet, and should emit a signal.
@@ -139,7 +153,6 @@ void JsonRpcClient::readPacket(const QByteArray message)
     else if (root["error"] != QJsonValue::Null) {
       emit errorReceived(root);
     }
-  }
 }
 
 void JsonRpcClient::readSocket()
@@ -149,8 +162,10 @@ void JsonRpcClient::readSocket()
     QByteArray json;
     stream >> json;
     emit newPacket(json);
-    if (m_socket->bytesAvailable() > 0)
+    if(m_socket->bytesAvailable() > 0)
+    {
       QTimer::singleShot(0, this, SLOT(readSocket()));
+    }
   }
 }
 

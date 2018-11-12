@@ -21,9 +21,7 @@
 namespace MoleQueue
 {
 
-JobObject::JobObject()
-{
-}
+JobObject::JobObject() = default;
 
 JobObject::~JobObject() = default;
 
@@ -92,8 +90,10 @@ void JobObject::appendAdditionalInputFile(const QString &fileName,
                                           const QString &contents)
 {
   QJsonArray extraInputFiles;
-  if (m_value["additionalInputFiles"].isArray())
+  if(m_value["additionalInputFiles"].isArray())
+  {
     extraInputFiles = m_value["additionalInputFiles"].toArray();
+  }
   extraInputFiles.append(fileSpec(fileName, contents));
   m_value["additionalInputFiles"] = extraInputFiles;
 }
@@ -101,8 +101,10 @@ void JobObject::appendAdditionalInputFile(const QString &fileName,
 void JobObject::appendAdditionalInputFile(const QString &path)
 {
   QJsonArray extraInputFiles;
-  if (m_value["additionalInputFiles"].isArray())
+  if(m_value["additionalInputFiles"].isArray())
+  {
     extraInputFiles = m_value["additionalInputFiles"].toArray();
+  }
   extraInputFiles.append(fileSpec(path));
   m_value["additionalInputFiles"] = extraInputFiles;
 }

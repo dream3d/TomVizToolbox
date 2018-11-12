@@ -44,8 +44,7 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvResetApplication::TvResetApplication() :
-  AbstractFilter()
+TvResetApplication::TvResetApplication()
 {
   initialize();
 }
@@ -166,7 +165,7 @@ void TvResetApplication::execute()
 AbstractFilter::Pointer TvResetApplication::newFilterInstance(bool copyFilterParameters) const
 {
   TvResetApplication::Pointer filter = TvResetApplication::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }

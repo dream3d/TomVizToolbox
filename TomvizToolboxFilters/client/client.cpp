@@ -32,15 +32,19 @@ Client::~Client() = default;
 
 bool Client::isConnected() const
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return false;
-  else
+  }
+  {
     return m_jsonRpcClient->isConnected();
+  }
 }
 
 bool Client::connectToServer(const QString &serverName)
 {
-  if (!m_jsonRpcClient) {
+  if(m_jsonRpcClient == nullptr)
+  {
     m_jsonRpcClient = new JsonRpcClient(this);
     connect(m_jsonRpcClient, SIGNAL(resultReceived(QJsonObject)),
             SLOT(processResult(QJsonObject)));
@@ -57,13 +61,17 @@ bool Client::connectToServer(const QString &serverName)
 
 int Client::requestQueueList()
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject packet = m_jsonRpcClient->emptyRequest();
   packet["method"] = QLatin1String("listQueues");
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = ListQueues;
@@ -72,14 +80,18 @@ int Client::requestQueueList()
 
 int Client::submitJob(const JobObject &job)
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject packet = m_jsonRpcClient->emptyRequest();
   packet["method"] = QLatin1String("submitJob");
   packet["params"] = job.json();
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = SubmitJob;
@@ -88,16 +100,20 @@ int Client::submitJob(const JobObject &job)
 
 int Client::lookupJob(unsigned int moleQueueId)
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject packet = m_jsonRpcClient->emptyRequest();
   packet["method"] = QLatin1String("lookupJob");
   QJsonObject params;
   params["moleQueueId"] = static_cast<int>(moleQueueId);
   packet["params"] = params;
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = LookupJob;
@@ -106,16 +122,20 @@ int Client::lookupJob(unsigned int moleQueueId)
 
 int Client::cancelJob(unsigned int moleQueueId)
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject packet = m_jsonRpcClient->emptyRequest();
   packet["method"] = QLatin1String("cancelJob");
   QJsonObject params;
   params["moleQueueId"] = static_cast<int>(moleQueueId);
   packet["params"] = params;
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = CancelJob;
@@ -125,16 +145,20 @@ int Client::cancelJob(unsigned int moleQueueId)
 int Client::registerOpenWith(const QString &name, const QString &executable,
                              const QList<QRegExp> &filePatterns)
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject method;
   method["executable"] = executable;
 
   QJsonObject packet(buildRegisterOpenWithRequest(name, filePatterns, method));
 
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = RegisterOpenWith;
@@ -145,8 +169,10 @@ int Client::registerOpenWith(const QString &name,
                              const QString &rpcServer, const QString &rpcMethod,
                              const QList<QRegExp> &filePatterns)
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject method;
   method["rpcServer"] = rpcServer;
@@ -154,8 +180,10 @@ int Client::registerOpenWith(const QString &name,
 
   QJsonObject packet(buildRegisterOpenWithRequest(name, filePatterns, method));
 
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = RegisterOpenWith;
@@ -164,13 +192,17 @@ int Client::registerOpenWith(const QString &name,
 
 int Client::listOpenWithNames()
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject packet = m_jsonRpcClient->emptyRequest();
   packet["method"] = QLatin1String("listOpenWithNames");
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = ListOpenWithNames;
@@ -179,16 +211,20 @@ int Client::listOpenWithNames()
 
 int Client::unregisterOpenWith(const QString &handlerName)
 {
-  if (!m_jsonRpcClient)
+  if(m_jsonRpcClient == nullptr)
+  {
     return -1;
+  }
 
   QJsonObject packet = m_jsonRpcClient->emptyRequest();
   packet["method"] = QLatin1String("unregisterOpenWith");
   QJsonObject params;
   params["name"] = handlerName;
   packet["params"] = params;
-  if (!m_jsonRpcClient->sendRequest(packet))
+  if(!m_jsonRpcClient->sendRequest(packet))
+  {
     return -1;
+  }
 
   int localId = static_cast<int>(packet["id"].toDouble());
   m_requests[localId] = UnregisterOpenWith;
@@ -197,8 +233,10 @@ int Client::unregisterOpenWith(const QString &handlerName)
 
 void Client::flush()
 {
-  if (m_jsonRpcClient)
+  if(m_jsonRpcClient != nullptr)
+  {
     m_jsonRpcClient->flush();
+  }
 }
 
 void Client::processResult(const QJsonObject &response)
@@ -257,12 +295,18 @@ void Client::processError(const QJsonObject &error)
   const QJsonValue &errorValue = error.value(QLatin1String("error"));
   if (errorValue.isObject()) {
     const QJsonObject errorObject = errorValue.toObject();
-    if (errorObject.value("code").isDouble())
+    if(errorObject.value("code").isDouble())
+    {
       errorCode = static_cast<int>(errorObject.value("code").toDouble());
-    if (errorObject.value("message").isString())
+    }
+    if(errorObject.value("message").isString())
+    {
       errorMessage = errorObject.value("message").toString();
-    if (errorObject.contains("data"))
+    }
+    if(errorObject.contains("data"))
+    {
       errorData = errorObject.value("data");
+    }
   }
   emit errorReceived(localId, errorCode, errorMessage, errorData);
 }

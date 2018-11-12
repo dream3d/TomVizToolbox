@@ -47,8 +47,7 @@
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
-TvReloadFile::TvReloadFile() :
-  AbstractFilter()
+TvReloadFile::TvReloadFile()
 {
   initialize();
 }
@@ -98,7 +97,7 @@ void TvReloadFile::dataCheck()
     notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
-  else if (fi.exists() == false)
+  if(!fi.exists())
   {
     QString ss = QObject::tr("The specified socket file does not exist.");
     setErrorCondition(-67001);
@@ -186,7 +185,7 @@ void TvReloadFile::execute()
 AbstractFilter::Pointer TvReloadFile::newFilterInstance(bool copyFilterParameters) const
 {
   TvReloadFile::Pointer filter = TvReloadFile::New();
-  if(true == copyFilterParameters)
+  if(copyFilterParameters)
   {
     copyFilterParameterInstanceVariables(filter.get());
   }
