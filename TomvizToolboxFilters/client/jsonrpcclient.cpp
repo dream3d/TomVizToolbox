@@ -24,10 +24,10 @@
 namespace MoleQueue
 {
 
-JsonRpcClient::JsonRpcClient(QObject *parent_) :
-  QObject(parent_),
-  m_packetCounter(0),
-  m_socket(NULL)
+JsonRpcClient::JsonRpcClient(QObject* parent_)
+: QObject(parent_)
+, m_packetCounter(0)
+, m_socket(nullptr)
 {
   connect(this, SIGNAL(newPacket(QByteArray)), SLOT(readPacket(QByteArray)),
           Qt::QueuedConnection);
@@ -59,11 +59,12 @@ bool JsonRpcClient::connectToServer(const QString &serverName_)
 
       m_socket->close();
       delete m_socket;
-      m_socket = NULL;
+      m_socket = nullptr;
   }
 
   // New connection.
-  if (m_socket == NULL) {
+  if(m_socket == nullptr)
+  {
     m_socket = new QLocalSocket(this);
     connect(m_socket, SIGNAL(readyRead()), this, SLOT(readSocket()));
   }

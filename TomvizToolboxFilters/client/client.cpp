@@ -24,7 +24,9 @@
 namespace MoleQueue
 {
 
-Client::Client(QObject *parent_) : QObject(parent_), m_jsonRpcClient(NULL)
+Client::Client(QObject* parent_)
+: QObject(parent_)
+, m_jsonRpcClient(nullptr)
 {
 }
 
