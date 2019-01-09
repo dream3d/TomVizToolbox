@@ -130,10 +130,7 @@ void TvResetApplication::execute()
   QObject::connect(client.get(), SIGNAL(resultReceived(QJsonObject)), &waitLoop, SLOT(quit()));
   QObject::connect(client.get(), SIGNAL(errorReceived(QJsonObject)), &waitLoop, SLOT(quit()));
 
-  QObject::connect(client.get(), &MoleQueue::JsonRpcClient::resultReceived, [=] (QJsonObject obj) {
-    Q_UNUSED(obj)
-    notifyStatusMessage(getHumanLabel(), "Complete");
-  });
+  QObject::connect(client.get(), &MoleQueue::JsonRpcClient::resultReceived, [=](QJsonObject obj) { Q_UNUSED(obj) });
   QObject::connect(client.get(), &MoleQueue::JsonRpcClient::errorReceived, [=] (QJsonObject obj) {
     int errCode = -1;
     QString errMsg = "An unidentified error occurred.";
@@ -156,7 +153,6 @@ void TvResetApplication::execute()
 
   waitLoop.exec();
 
-  notifyStatusMessage(getHumanLabel(), "Complete");
 }
 
 // -----------------------------------------------------------------------------
