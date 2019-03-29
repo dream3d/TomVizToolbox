@@ -147,7 +147,7 @@ void TvResetApplication::execute()
     }
 
     setErrorCondition(errCode);
-    notifyErrorMessage(getHumanLabel(), errMsg, getErrorCondition());
+    notifyErrorMessage(errMsg, getErrorCondition());
   });
 
   waitLoop.exec();

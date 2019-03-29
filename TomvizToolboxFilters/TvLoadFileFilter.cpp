@@ -94,14 +94,14 @@ void TvLoadFileFilter::dataCheck()
   {
     QString ss = QObject::tr("The socket file can not be empty.");
     setErrorCondition(-67000);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
   if(!fi.exists())
   {
     QString ss = QObject::tr("The specified socket file does not exist.");
     setErrorCondition(-67001);
-    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
+    notifyErrorMessage(ss, getErrorCondition());
     return;
   }
 }
@@ -173,7 +173,7 @@ void TvLoadFileFilter::execute()
     }
 
     setErrorCondition(errCode);
-    notifyErrorMessage(getHumanLabel(), errMsg, getErrorCondition());
+    notifyErrorMessage(errMsg, getErrorCondition());
   });
 
   waitLoop.exec();
