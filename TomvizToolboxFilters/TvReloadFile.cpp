@@ -93,13 +93,15 @@ void TvReloadFile::dataCheck()
   if(socketFilePath.isEmpty())
   {
     QString ss = QObject::tr("The socket file can not be empty.");
-    notifyErrorMessage("", ss, -67000);
+    setErrorCondition(-67000);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
   if(!fi.exists())
   {
     QString ss = QObject::tr("The specified socket file does not exist.");
-    notifyErrorMessage("", ss, -67001);
+    setErrorCondition(-67001);
+    notifyErrorMessage(getHumanLabel(), ss, getErrorCondition());
     return;
   }
 }
@@ -167,7 +169,8 @@ void TvReloadFile::execute()
       }
     }
 
-    notifyErrorMessage("", errMsg, errCode);
+    setErrorCondition(errCode);
+    notifyErrorMessage(getHumanLabel(), errMsg, getErrorCondition());
   });
 
   waitLoop.exec();
