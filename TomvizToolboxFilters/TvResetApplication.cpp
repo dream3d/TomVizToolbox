@@ -104,7 +104,7 @@ void TvResetApplication::execute()
 {
   initialize();
   dataCheck();
-  if(getErrorCondition() < 0)
+  if(getErrorCode() < 0)
   {
     return;
   }
@@ -146,8 +146,7 @@ void TvResetApplication::execute()
       }
     }
 
-    setErrorCondition(errCode);
-    notifyErrorMessage(errMsg, getErrorCondition());
+    setErrorCondition(errCode, errMsg);
   });
 
   waitLoop.exec();
