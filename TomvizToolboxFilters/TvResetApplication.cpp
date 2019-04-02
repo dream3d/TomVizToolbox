@@ -59,8 +59,8 @@ TvResetApplication::~TvResetApplication() = default;
 // -----------------------------------------------------------------------------
 void TvResetApplication::initialize()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   setCancel(false);
 }
 
@@ -79,8 +79,8 @@ void TvResetApplication::setupFilterParameters()
 // -----------------------------------------------------------------------------
 void TvResetApplication::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 }
 
 // -----------------------------------------------------------------------------

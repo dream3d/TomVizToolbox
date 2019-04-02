@@ -62,8 +62,8 @@ TvLoadFileFilter::~TvLoadFileFilter() = default;
 // -----------------------------------------------------------------------------
 void TvLoadFileFilter::initialize()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   setCancel(false);
 }
 
@@ -84,8 +84,8 @@ void TvLoadFileFilter::setupFilterParameters()
 // -----------------------------------------------------------------------------
 void TvLoadFileFilter::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   QString socketFilePath = getSocketFile();
   QFileInfo fi(socketFilePath);

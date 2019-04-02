@@ -62,8 +62,8 @@ TvReloadFile::~TvReloadFile() = default;
 // -----------------------------------------------------------------------------
 void TvReloadFile::initialize()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
   setCancel(false);
 }
 
@@ -84,8 +84,8 @@ void TvReloadFile::setupFilterParameters()
 // -----------------------------------------------------------------------------
 void TvReloadFile::dataCheck()
 {
-  clearErrorCondition();
-  clearWarningCondition();
+  clearErrorCode();
+  clearWarningCode();
 
   QString socketFilePath = getSocketFile();
   QFileInfo fi(socketFilePath);
