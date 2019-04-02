@@ -72,7 +72,7 @@ void TvReloadFile::initialize()
 // -----------------------------------------------------------------------------
 void TvReloadFile::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   parameters.push_back(SIMPL_NEW_INPUT_FILE_FP("Socket File", SocketFile, FilterParameter::Parameter, TvReloadFile));
 

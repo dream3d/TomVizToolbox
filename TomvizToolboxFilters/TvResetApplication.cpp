@@ -69,7 +69,7 @@ void TvResetApplication::initialize()
 // -----------------------------------------------------------------------------
 void TvResetApplication::setupFilterParameters()
 {
-  FilterParameterVector parameters;
+  FilterParameterVectorType parameters;
 
   setFilterParameters(parameters);
 }
