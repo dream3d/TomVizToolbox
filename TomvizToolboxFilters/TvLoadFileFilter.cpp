@@ -30,10 +30,14 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#include <memory>
+
 #include "TvLoadFileFilter.h"
 
 #include <QtCore/QEventLoop>
 #include <QtCore/QFileInfo>
+
+#include <QtCore/QTextStream>
 
 #include "SIMPLib/Common/Constants.h"
 
@@ -247,4 +251,45 @@ QString TvLoadFileFilter::getSubGroupName() const
 QString TvLoadFileFilter::getHumanLabel() const
 {
   return "Load File in Tomviz";
+}
+
+// -----------------------------------------------------------------------------
+TvLoadFileFilter::Pointer TvLoadFileFilter::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<TvLoadFileFilter> TvLoadFileFilter::New()
+{
+  struct make_shared_enabler : public TvLoadFileFilter
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+const QString TvLoadFileFilter::getNameOfClass() const
+{
+  return QString("TvLoadFileFilter");
+}
+
+// -----------------------------------------------------------------------------
+QString TvLoadFileFilter::ClassName()
+{
+  return QString("TvLoadFileFilter");
+}
+
+// -----------------------------------------------------------------------------
+void TvLoadFileFilter::setSocketFile(const QString& value)
+{
+  m_SocketFile = value;
+}
+
+// -----------------------------------------------------------------------------
+QString TvLoadFileFilter::getSocketFile() const
+{
+  return m_SocketFile;
 }

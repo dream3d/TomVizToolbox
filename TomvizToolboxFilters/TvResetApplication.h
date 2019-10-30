@@ -32,9 +32,10 @@
 
 #pragma once
 
+#include <memory>
+
 #include "SIMPLib/SIMPLib.h"
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 
 #include "TomvizToolbox/TomvizToolboxDLLExport.h"
 
@@ -46,9 +47,23 @@ class TomvizToolbox_EXPORT TvResetApplication : public AbstractFilter
   Q_OBJECT
 
   public:
-    SIMPL_SHARED_POINTERS(TvResetApplication)
-    SIMPL_FILTER_NEW_MACRO(TvResetApplication)
-    SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvResetApplication, AbstractFilter)
+    using Self = TvResetApplication;
+    using Pointer = std::shared_ptr<Self>;
+    using ConstPointer = std::shared_ptr<const Self>;
+    using WeakPointer = std::weak_ptr<Self>;
+    using ConstWeakPointer = std::weak_ptr<Self>;
+    static Pointer NullPointer();
+
+    static std::shared_ptr<TvResetApplication> New();
+
+    /**
+     * @brief Returns the name of the class for TvResetApplication
+     */
+    const QString getNameOfClass() const override;
+    /**
+     * @brief Returns the name of the class for TvResetApplication
+     */
+    static QString ClassName();
 
     ~TvResetApplication() override;
 
@@ -153,5 +168,7 @@ class TomvizToolbox_EXPORT TvResetApplication : public AbstractFilter
     TvResetApplication(TvResetApplication&&) = delete;      // Move Constructor Not Implemented
     TvResetApplication& operator=(const TvResetApplication&) = delete; // Copy Assignment Not Implemented
     TvResetApplication& operator=(TvResetApplication&&) = delete;      // Move Assignment Not Implemented
+
+  private:
 };
 

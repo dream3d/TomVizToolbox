@@ -30,10 +30,14 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#include <memory>
+
 #include "TvReloadFile.h"
 
 #include <QtCore/QEventLoop>
 #include <QtCore/QFileInfo>
+
+#include <QtCore/QTextStream>
 
 #include "SIMPLib/Common/Constants.h"
 
@@ -237,3 +241,43 @@ QString TvReloadFile::getSubGroupName() const
 QString TvReloadFile::getHumanLabel() const
 { return "Reload File in Tomviz"; }
 
+// -----------------------------------------------------------------------------
+TvReloadFile::Pointer TvReloadFile::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<TvReloadFile> TvReloadFile::New()
+{
+  struct make_shared_enabler : public TvReloadFile
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+const QString TvReloadFile::getNameOfClass() const
+{
+  return QString("TvReloadFile");
+}
+
+// -----------------------------------------------------------------------------
+QString TvReloadFile::ClassName()
+{
+  return QString("TvReloadFile");
+}
+
+// -----------------------------------------------------------------------------
+void TvReloadFile::setSocketFile(const QString& value)
+{
+  m_SocketFile = value;
+}
+
+// -----------------------------------------------------------------------------
+QString TvReloadFile::getSocketFile() const
+{
+  return m_SocketFile;
+}

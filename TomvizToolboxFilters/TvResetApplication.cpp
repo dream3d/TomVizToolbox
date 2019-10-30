@@ -30,9 +30,13 @@
  *
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+#include <memory>
+
 #include "TvResetApplication.h"
 
 #include <QtCore/QEventLoop>
+
+#include <QtCore/QTextStream>
 
 #include "SIMPLib/Common/Constants.h"
 
@@ -217,3 +221,31 @@ QString TvResetApplication::getSubGroupName() const
 QString TvResetApplication::getHumanLabel() const
 { return "Reset Tomviz Application"; }
 
+// -----------------------------------------------------------------------------
+TvResetApplication::Pointer TvResetApplication::NullPointer()
+{
+  return Pointer(static_cast<Self*>(nullptr));
+}
+
+// -----------------------------------------------------------------------------
+std::shared_ptr<TvResetApplication> TvResetApplication::New()
+{
+  struct make_shared_enabler : public TvResetApplication
+  {
+  };
+  std::shared_ptr<make_shared_enabler> val = std::make_shared<make_shared_enabler>();
+  val->setupFilterParameters();
+  return val;
+}
+
+// -----------------------------------------------------------------------------
+const QString TvResetApplication::getNameOfClass() const
+{
+  return QString("TvResetApplication");
+}
+
+// -----------------------------------------------------------------------------
+QString TvResetApplication::ClassName()
+{
+  return QString("TvResetApplication");
+}

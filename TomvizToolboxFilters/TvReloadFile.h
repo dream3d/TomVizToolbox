@@ -32,9 +32,9 @@
 
 #pragma once
 
-#include "SIMPLib/SIMPLib.h"
+#include <memory>
+
 #include "SIMPLib/Filtering/AbstractFilter.h"
-#include "SIMPLib/Common/SIMPLibSetGetMacros.h"
 
 #include "TomvizToolbox/TomvizToolboxDLLExport.h"
 
@@ -44,17 +44,46 @@
 class TomvizToolbox_EXPORT TvReloadFile : public AbstractFilter
 {
   Q_OBJECT
+
+#ifdef SIMPL_ENABLE_PYTHON
   PYB11_CREATE_BINDINGS(TvReloadFile SUPERCLASS AbstractFilter)
+  PYB11_SHARED_POINTERS(TvReloadFile)
+  PYB11_FILTER_NEW_MACRO(TvReloadFile)
+  PYB11_FILTER_PARAMETER(QString, SocketFile)
   PYB11_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
+#endif
 
 public:
-  SIMPL_SHARED_POINTERS(TvReloadFile)
-  SIMPL_FILTER_NEW_MACRO(TvReloadFile)
-  SIMPL_TYPE_MACRO_SUPER_OVERRIDE(TvReloadFile, AbstractFilter)
+  using Self = TvReloadFile;
+  using Pointer = std::shared_ptr<Self>;
+  using ConstPointer = std::shared_ptr<const Self>;
+  using WeakPointer = std::weak_ptr<Self>;
+  using ConstWeakPointer = std::weak_ptr<Self>;
+  static Pointer NullPointer();
+
+  static std::shared_ptr<TvReloadFile> New();
+
+  /**
+   * @brief Returns the name of the class for TvReloadFile
+   */
+  const QString getNameOfClass() const override;
+  /**
+   * @brief Returns the name of the class for TvReloadFile
+   */
+  static QString ClassName();
 
   ~TvReloadFile() override;
 
-  SIMPL_FILTER_PARAMETER(QString, SocketFile)
+  /**
+   * @brief Setter property for SocketFile
+   */
+  void setSocketFile(const QString& value);
+  /**
+   * @brief Getter property for SocketFile
+   * @return Value of SocketFile
+   */
+  QString getSocketFile() const;
+
   Q_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
 
   /**
@@ -158,5 +187,8 @@ public:
   TvReloadFile(TvReloadFile&&) = delete;                 // Move Constructor Not Implemented
   TvReloadFile& operator=(const TvReloadFile&) = delete; // Copy Assignment Not Implemented
   TvReloadFile& operator=(TvReloadFile&&) = delete;      // Move Assignment Not Implemented
+
+private:
+  QString m_SocketFile = {};
 };
 
