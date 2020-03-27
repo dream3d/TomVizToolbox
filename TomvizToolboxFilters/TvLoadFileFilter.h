@@ -47,13 +47,13 @@ class TomvizToolbox_EXPORT TvLoadFileFilter : public AbstractFilter
 {
   Q_OBJECT
 
-#ifdef SIMPL_ENABLE_PYTHON
-  PYB11_CREATE_BINDINGS(TvLoadFileFilter SUPERCLASS AbstractFilter)
+  // Start Python bindings declarations
+  PYB11_BEGIN_BINDINGS(TvLoadFileFilter SUPERCLASS AbstractFilter)
   PYB11_SHARED_POINTERS(TvLoadFileFilter)
   PYB11_FILTER_NEW_MACRO(TvLoadFileFilter)
-  PYB11_FILTER_PARAMETER(QString, SocketFile)
   PYB11_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
-#endif
+  PYB11_END_BINDINGS()
+  // End Python bindings declarations
 
 public:
   using Self = TvLoadFileFilter;
