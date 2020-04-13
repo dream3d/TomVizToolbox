@@ -83,7 +83,6 @@ public:
    * @return Value of SocketFile
    */
   QString getSocketFile() const;
-
   Q_PROPERTY(QString SocketFile READ getSocketFile WRITE setSocketFile)
 
   /**
